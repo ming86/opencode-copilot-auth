@@ -81,7 +81,9 @@ export async function CopilotAuthPlugin({ client }) {
                 },
               });
 
-              if (!response.ok) return;
+              if (!response.ok) {
+                throw new Error(`Token refresh failed: ${response.status}`);
+              }
 
               const tokenData = await response.json();
 
